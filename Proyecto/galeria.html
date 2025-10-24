@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Galería — Amelilozvel</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-cream: #f6f0e8;
+        --pill: #efe9e2;
+        --muted: #8b7f75;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg-cream);
+      }
+    </style>
+  </head>
+
+  <body class="antialiased text-gray-900">
+    <!-- Header -->
+    <header class="w-full flex justify-center py-6">
+      <div class="w-full max-w-4xl px-4">
+        <div
+          class="bg-[color:var(--pill)] rounded-full px-6 py-3 flex items-center justify-between shadow-sm ring-1 ring-black/5"
+        >
+          <a href="index.html" class="flex items-center gap-3">
+            <img src="logo.png" alt="logo" />
+          </a>
+
+          <nav
+            class="hidden md:flex gap-8 items-center text-sm font-medium text-[color:var(--black)]"
+          >
+            <a href="index.html" class="px-3 py-1">Inicio</a>
+            <a href="conoceme.html" class="px-3 py-1">Conóceme más</a>
+            <a href="proposito.html" class="px-3 py-1">Mi propósito</a>
+            <a href="galeria.html" class="px-3 py-1 text-[color:var(--muted)]"
+              >Galería</a
+            >
+          </nav>
+
+          <div class="hidden md:block w-8"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Galería -->
+    <main class="max-w-6xl mx-auto px-6 pt-10 pb-20">
+      <section>
+        <!-- Cuadrícula de imágenes -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <!-- Cada imagen -->
+          <img
+            src="foto1.png"
+            alt="Imagen 1"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto2.png"
+            alt="Imagen 2"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto3.png"
+            alt="Imagen 3"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto4.png"
+            alt="Imagen 4"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto5.png"
+            alt="Imagen 5"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto6.png"
+            alt="Imagen 6"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto7.png"
+            alt="Imagen 7"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto8.png"
+            alt="Imagen 8"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto9.png"
+            alt="Imagen 9"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+          <img
+            src="foto10.png"
+            alt="Imagen 10"
+            class="rounded-3xl w-full h-64 object-cover shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl hover:brightness-110 cursor-pointer"
+          />
+        </div>
+      </section>
+    </main>
+
+    <!-- Lightbox (modal) oculto -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50"
+    >
+      <img
+        id="lightbox-img"
+        src=""
+        alt="Imagen ampliada"
+        class="max-w-3xl max-h-[90vh] rounded-2xl shadow-2xl"
+      />
+      <button
+        id="close-lightbox"
+        class="absolute top-6 right-6 text-white text-3xl font-bold"
+      >
+        ×
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="max-w-5xl mx-auto px-6 pb-12">
+      <div class="text-center text-sm text-[color:var(--muted)]">
+        © <span id="year"></span> Amelilozvel — Hecho con cariño
+      </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+      // Año automático
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Funcionalidad Lightbox
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.getElementById("close-lightbox");
+
+      document.querySelectorAll("main img").forEach((img) => {
+        img.addEventListener("click", () => {
+          lightboxImg.src = img.src;
+          lightbox.classList.remove("hidden");
+          lightbox.classList.add("flex");
+        });
+      });
+
+      // Cerrar lightbox al hacer clic en el fondo o en la X
+      closeBtn.addEventListener("click", () => {
+        lightbox.classList.add("hidden");
+      });
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) lightbox.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
